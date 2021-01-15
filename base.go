@@ -27,9 +27,16 @@ func randomUInt64(mn, mx uint64) (uint64, error) {
 	return mn + n.Uint64(), nil
 }
 
-func randomBytes(alphabet []byte, n int) ([]byte, error) {
+func randomBytes(n int) ([]byte, error) {
 	b := make([]byte, n)
-	_, err := rand.Read(b)
+	if _, err := rand.Read(b); err != nil {
+		return nil, err
+	}
+	return b, nil
+}
+
+func randomBytesAlphabet(alphabet []byte, n int) ([]byte, error) {
+	b, err := randomBytes(n)
 	if err != nil {
 		return nil, err
 	}

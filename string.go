@@ -1,7 +1,7 @@
 package easyrand
 
 func String(alphabet string, n int) (string, error) {
-	b, err := randomBytes([]byte(alphabet), n)
+	b, err := randomBytesAlphabet([]byte(alphabet), n)
 	if err != nil {
 		return "", err
 	}
@@ -15,6 +15,9 @@ const (
 	alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 	alpha = alphaLower + alphaUpper
+
+	alphaNumLower = alphaLower + num
+	alphaNumUpper = alphaUpper + num
 
 	alphaNum = alphaLower + alphaUpper + num
 )
@@ -95,6 +98,82 @@ func AlphaVarLenStringUnchecked(nmin, nmax int) string {
 	return s
 }
 
+func AlphaLowerString(n int) (string, error) {
+	return String(alphaLower, n)
+}
+
+func AlphaLowerStringChecked(n int) string {
+	s, err := AlphaLowerString(n)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func AlphaLowerStringUnchecked(n int) string {
+	s, _ := AlphaLowerString(n)
+	return s
+}
+
+func AlphaLowerVarLenString(nmin, nmax int) (string, error) {
+	n, err := IntRange(nmin, nmax)
+	if err != nil {
+		return "", err
+	}
+	return AlphaLowerString(n)
+}
+
+func AlphaLowerVarLenStringChecked(nmin, nmax int) string {
+	s, err := AlphaLowerVarLenString(nmin, nmax)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func AlphaLowerVarLenStringUnchecked(nmin, nmax int) string {
+	s, _ := AlphaLowerVarLenString(nmin, nmax)
+	return s
+}
+
+func AlphaUpperString(n int) (string, error) {
+	return String(alphaUpper, n)
+}
+
+func AlphaUpperStringChecked(n int) string {
+	s, err := AlphaUpperString(n)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func AlphaUpperStringUnchecked(n int) string {
+	s, _ := AlphaUpperString(n)
+	return s
+}
+
+func AlphaUpperVarLenString(nmin, nmax int) (string, error) {
+	n, err := IntRange(nmin, nmax)
+	if err != nil {
+		return "", err
+	}
+	return AlphaUpperString(n)
+}
+
+func AlphaUpperVarLenStringChecked(nmin, nmax int) string {
+	s, err := AlphaLowerVarLenString(nmin, nmax)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func AlphaUpperVarLenStringUnchecked(nmin, nmax int) string {
+	s, _ := AlphaLowerVarLenString(nmin, nmax)
+	return s
+}
+
 func AlphaNumString(n int) (string, error) {
 	return String(alphaNum, n)
 }
@@ -130,5 +209,81 @@ func AlphaNumVarLenStringChecked(nmin, nmax int) string {
 
 func AlphaNumVarLenStringUnchecked(nmin, nmax int) string {
 	s, _ := AlphaNumVarLenString(nmin, nmax)
+	return s
+}
+
+func AlphaNumLowerString(n int) (string, error) {
+	return String(alphaNumLower, n)
+}
+
+func AlphaNumLowerStringChecked(n int) string {
+	s, err := AlphaLowerString(n)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func AlphaNumLowerStringUnchecked(n int) string {
+	s, _ := AlphaLowerString(n)
+	return s
+}
+
+func AlphaNumLowerVarLenString(nmin, nmax int) (string, error) {
+	n, err := IntRange(nmin, nmax)
+	if err != nil {
+		return "", err
+	}
+	return AlphaNumLowerString(n)
+}
+
+func AlphaNumLowerVarLenStringChecked(nmin, nmax int) string {
+	s, err := AlphaNumLowerVarLenString(nmin, nmax)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func AlphaNumLowerVarLenStringUnchecked(nmin, nmax int) string {
+	s, _ := AlphaNumLowerVarLenString(nmin, nmax)
+	return s
+}
+
+func AlphaNumUpperString(n int) (string, error) {
+	return String(alphaNumUpper, n)
+}
+
+func AlphaNumUpperStringChecked(n int) string {
+	s, err := AlphaUpperString(n)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func AlphaNumUpperStringUnchecked(n int) string {
+	s, _ := AlphaLowerString(n)
+	return s
+}
+
+func AlphaNumUpperVarLenString(nmin, nmax int) (string, error) {
+	n, err := IntRange(nmin, nmax)
+	if err != nil {
+		return "", err
+	}
+	return AlphaNumUpperString(n)
+}
+
+func AlphaNumUpperVarLenStringChecked(nmin, nmax int) string {
+	s, err := AlphaNumUpperVarLenString(nmin, nmax)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func AlphaNumUpperVarLenStringUnchecked(nmin, nmax int) string {
+	s, _ := AlphaNumUpperVarLenString(nmin, nmax)
 	return s
 }

@@ -28,7 +28,7 @@ func TestRandomUInt64(t *testing.T) {
 	}
 }
 
-func TestRandomBytes(t *testing.T) {
+func TestRandomBytesAlphabet(t *testing.T) {
 	m := map[byte]struct{}{
 		1: {}, 2: {}, 3: {},
 	}
@@ -39,7 +39,7 @@ func TestRandomBytes(t *testing.T) {
 	}
 
 	for i := 0; i < 1000; i++ {
-		v, err := randomBytes(a, i)
+		v, err := randomBytesAlphabet(a, i)
 
 		assert.NoError(t, err)
 		assert.Equal(t, i, len(v))
