@@ -41,10 +41,9 @@ func randomBytesAlphabet(alphabet []byte, n int) ([]byte, error) {
 		return nil, err
 	}
 
-	res := make([]byte, n)
-	for i, c := range b {
-		res[i] = alphabet[int(c)%len(alphabet)]
+	for i := 0; i < n; i++ {
+		b[i] = alphabet[int(b[i])%len(alphabet)]
 	}
 
-	return res, nil
+	return b, nil
 }
