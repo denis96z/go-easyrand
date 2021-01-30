@@ -14,7 +14,7 @@ func UInt() (uint, error) {
 	}
 
 	for i := 0; i < len(b); i++ {
-		x |= uint(b[i] << (8 * i))
+		x |= uint(b[i]) << (8 * i)
 	}
 
 	return x, nil
