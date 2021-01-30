@@ -1,11 +1,16 @@
 package easyrand
 
 import (
-	"math"
+	"crypto/rand"
 )
 
 func Int64() (int64, error) {
-	return Int64Range(math.MinInt64, math.MaxInt64)
+	b := make([]byte, 8)
+	if _, err := rand.Read(b); err != nil {
+		return 0, err
+	}
+	return int64(b[0]) | int64(b[1])<<8 | int64(b[2])<<16 | int64(b[3])<<24 |
+		int64(b[4])<<32 | int64(b[5])<<40 | int64(b[6])<<48 | int64(b[7])<<56, nil
 }
 
 func Int64Range(min, max int64) (int64, error) {

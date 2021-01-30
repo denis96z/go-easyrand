@@ -1,12 +1,23 @@
 package easyrand
 
 import (
-	"math"
+	"crypto/rand"
+	"unsafe"
 )
 
 func Int() (int, error) {
-	//NOTE: sizeof(int32) <= sizeof(int) <= sizeof(int64)
-	return IntRange(math.MinInt32, math.MaxInt32)
+	var x int
+
+	b := make([]byte, unsafe.Sizeof(x))
+	if _, err := rand.Read(b); err != nil {
+		return 0, err
+	}
+
+	for i := 0; i < len(b); i++ {
+		x |= b[i] << (8 * i)
+	}
+
+	return x, nil
 }
 
 func IntRange(min, max int) (int, error) {

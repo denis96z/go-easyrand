@@ -1,7 +1,13 @@
 package easyrand
 
+import "crypto/rand"
+
 func UInt32() (uint32, error) {
-	return UInt32Range(0, (1<<32)-1)
+	b := make([]byte, 4)
+	if _, err := rand.Read(b); err != nil {
+		return 0, err
+	}
+	return uint32(b[0]) | uint32(b[1])<<8 | uint32(b[2])<<16 | uint32(b[3])<<24, nil
 }
 
 func UInt32Range(min, max uint32) (uint32, error) {

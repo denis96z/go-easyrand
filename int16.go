@@ -1,11 +1,15 @@
 package easyrand
 
 import (
-	"math"
+	"crypto/rand"
 )
 
 func Int16() (int16, error) {
-	return Int16Range(math.MinInt16, math.MaxInt16)
+	b := make([]byte, 2)
+	if _, err := rand.Read(b); err != nil {
+		return 0, err
+	}
+	return int16(b[0]) | int16(b[1])<<8, nil
 }
 
 func Int16Range(min, max int16) (int16, error) {

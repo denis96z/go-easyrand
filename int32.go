@@ -1,11 +1,15 @@
 package easyrand
 
 import (
-	"math"
+	"crypto/rand"
 )
 
 func Int32() (int32, error) {
-	return Int32Range(math.MinInt32, math.MaxInt32)
+	b := make([]byte, 4)
+	if _, err := rand.Read(b); err != nil {
+		return 0, err
+	}
+	return int32(b[0]) | int32(b[1])<<8 | int32(b[2])<<16 | int32(b[3])<<24, nil
 }
 
 func Int32Range(min, max int32) (int32, error) {

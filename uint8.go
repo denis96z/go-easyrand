@@ -1,7 +1,15 @@
 package easyrand
 
+import (
+	"crypto/rand"
+)
+
 func UInt8() (uint8, error) {
-	return UInt8Range(0, (1<<8)-1)
+	b := make([]byte, 1)
+	if _, err := rand.Read(b); err != nil {
+		return 0, err
+	}
+	return b[0], nil
 }
 
 func UInt8Range(min, max uint8) (uint8, error) {

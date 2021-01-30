@@ -1,8 +1,15 @@
 package easyrand
 
+import (
+	"crypto/rand"
+)
+
 func Bool() (bool, error) {
-	n, err := randomInt64(0, 2)
-	return n%2 == 0, err
+	b := make([]byte, 1)
+	if _, err := rand.Read(b); err != nil {
+		return false, err
+	}
+	return b[0]%2 == 0, nil
 }
 
 func BoolChecked() bool {
