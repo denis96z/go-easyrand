@@ -12,3 +12,13 @@ func TestInt(t *testing.T) {
 		assert.NoError(t, err)
 	}
 }
+
+func TestIntRange(t *testing.T) {
+	for i := -100; i < 100; i += 10 {
+		x1, x2 := i, i + 20
+		x, err := IntRange(x1, x2)
+		assert.NoError(t, err)
+		assert.LessOrEqual(t, x1, x)
+		assert.GreaterOrEqual(t, x2, x)
+	}
+}
