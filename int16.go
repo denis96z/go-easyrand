@@ -13,32 +13,32 @@ func Int16() (int16, error) {
 }
 
 func Int16Range(min, max int16) (int16, error) {
-	n, err := randomInt64(int64(min), int64(max))
-	return int16(n), err
+	x, err := randomInt64(int64(min), int64(max))
+	return int16(x), err
 }
 
 func Int16Checked() int16 {
-	n, err := Int16()
+	x, err := Int16()
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func Int16RangeChecked(min, max int16) int16 {
-	n, err := Int16Range(min, max)
+	x, err := Int16Range(min, max)
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func Int16Unchecked() int16 {
-	n, _ := Int16()
-	return n
+	x, _ := Int16()
+	return x
 }
 
 func Int16RangeUnchecked(min, max int16) int16 {
-	n, _ := Int16Range(min, max)
-	return n
+	x, _ := Int16Range(min, max)
+	return x
 }

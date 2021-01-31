@@ -21,32 +21,32 @@ func Int() (int, error) {
 }
 
 func IntRange(min, max int) (int, error) {
-	n, err := randomInt64(int64(min), int64(max))
-	return int(n), err
+	x, err := randomInt64(int64(min), int64(max))
+	return int(x), err
 }
 
 func IntChecked() int {
-	n, err := Int()
+	x, err := Int()
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func IntRangeChecked(min, max int) int {
-	n, err := IntRange(min, max)
+	x, err := IntRange(min, max)
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func IntUnchecked() int {
-	n, _ := Int()
-	return n
+	x, _ := Int()
+	return x
 }
 
 func IntRangeUnchecked(min, max int) int {
-	n, _ := IntRange(min, max)
-	return n
+	x, _ := IntRange(min, max)
+	return x
 }

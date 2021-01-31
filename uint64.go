@@ -18,27 +18,27 @@ func UInt64Range(min, max uint64) (uint64, error) {
 }
 
 func UInt64Checked() uint64 {
-	n, err := UInt64()
+	x, err := UInt64()
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func UInt64RangeChecked(min, max uint64) uint64 {
-	n, err := UInt64Range(min, max)
+	x, err := UInt64Range(min, max)
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func UInt64Unchecked() uint64 {
-	n, _ := UInt64()
-	return n
+	x, _ := UInt64()
+	return x
 }
 
 func UInt64RangeUnchecked(min, max uint64) uint64 {
-	n, _ := UInt64Range(min, max)
-	return n
+	x, _ := UInt64Range(min, max)
+	return x
 }

@@ -18,27 +18,27 @@ func Int64Range(min, max int64) (int64, error) {
 }
 
 func Int64Checked() int64 {
-	n, err := Int64()
+	x, err := Int64()
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func Int64RangeChecked(min, max int64) int64 {
-	n, err := Int64Range(min, max)
+	x, err := Int64Range(min, max)
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func Int64Unchecked() int64 {
-	n, _ := Int64()
-	return n
+	x, _ := Int64()
+	return x
 }
 
 func Int64RangeUnchecked(min, max int64) int64 {
-	n, _ := Int64Range(min, max)
-	return n
+	x, _ := Int64Range(min, max)
+	return x
 }

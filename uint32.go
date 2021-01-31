@@ -11,32 +11,32 @@ func UInt32() (uint32, error) {
 }
 
 func UInt32Range(min, max uint32) (uint32, error) {
-	n, err := randomUInt64(uint64(min), uint64(max))
-	return uint32(n), err
+	x, err := randomUInt64(uint64(min), uint64(max))
+	return uint32(x), err
 }
 
 func UInt32Checked() uint32 {
-	n, err := UInt32()
+	x, err := UInt32()
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func UInt32RangeChecked(min, max uint32) uint32 {
-	n, err := UInt32Range(min, max)
+	x, err := UInt32Range(min, max)
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func UInt32Unchecked() uint32 {
-	n, _ := UInt32()
-	return n
+	x, _ := UInt32()
+	return x
 }
 
 func UInt32RangeUnchecked(min, max uint32) uint32 {
-	n, _ := UInt32Range(min, max)
-	return n
+	x, _ := UInt32Range(min, max)
+	return x
 }

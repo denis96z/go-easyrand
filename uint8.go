@@ -13,32 +13,32 @@ func UInt8() (uint8, error) {
 }
 
 func UInt8Range(min, max uint8) (uint8, error) {
-	n, err := randomUInt64(uint64(min), uint64(max))
-	return uint8(n), err
+	x, err := randomUInt64(uint64(min), uint64(max))
+	return uint8(x), err
 }
 
 func UInt8Checked() uint8 {
-	n, err := UInt8()
+	x, err := UInt8()
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func UInt8RangeChecked(min, max uint8) uint8 {
-	n, err := UInt8Range(min, max)
+	x, err := UInt8Range(min, max)
 	if err != nil {
 		panic(err)
 	}
-	return n
+	return x
 }
 
 func UInt8Unchecked() uint8 {
-	n, _ := UInt8()
-	return n
+	x, _ := UInt8()
+	return x
 }
 
 func UInt8RangeUnchecked(min, max uint8) uint8 {
-	n, _ := UInt8Range(min, max)
-	return n
+	x, _ := UInt8Range(min, max)
+	return x
 }
