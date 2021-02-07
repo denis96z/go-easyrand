@@ -11,8 +11,17 @@ func UInt32() (uint32, error) {
 }
 
 func UInt32Range(min, max uint32) (uint32, error) {
-	x, err := randomUInt64(uint64(min), uint64(max))
-	return uint32(x), err
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := UInt32()
+	if err != nil {
+		return 0, err
+	}
+
+	return min + (x % d), nil
 }
 
 func UInt32Checked() uint32 {

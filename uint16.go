@@ -13,8 +13,17 @@ func UInt16() (uint16, error) {
 }
 
 func UInt16Range(min, max uint16) (uint16, error) {
-	x, err := randomUInt64(uint64(min), uint64(max))
-	return uint16(x), err
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := UInt16()
+	if err != nil {
+		return 0, err
+	}
+
+	return min + (x % d), nil
 }
 
 func UInt16Checked() uint16 {

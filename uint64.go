@@ -14,7 +14,17 @@ func UInt64() (uint64, error) {
 }
 
 func UInt64Range(min, max uint64) (uint64, error) {
-	return randomUInt64(min, max)
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := UInt64()
+	if err != nil {
+		return 0, err
+	}
+
+	return min + (x % d), nil
 }
 
 func UInt64Checked() uint64 {

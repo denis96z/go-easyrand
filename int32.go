@@ -13,8 +13,20 @@ func Int32() (int32, error) {
 }
 
 func Int32Range(min, max int32) (int32, error) {
-	x, err := randomInt64(int64(min), int64(max))
-	return int32(x), err
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := Int32()
+	if err != nil {
+		return 0, err
+	}
+
+	//XXX: x should always be positive
+	x &= int32(^(uint32(1) << 31))
+
+	return min + (x % d), nil
 }
 
 func Int32Checked() int32 {

@@ -13,8 +13,20 @@ func Int16() (int16, error) {
 }
 
 func Int16Range(min, max int16) (int16, error) {
-	x, err := randomInt64(int64(min), int64(max))
-	return int16(x), err
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := Int16()
+	if err != nil {
+		return 0, err
+	}
+
+	//XXX: x should always be positive
+	x &= int16(^(uint16(1) << 15))
+
+	return min + (x % d), nil
 }
 
 func Int16Checked() int16 {

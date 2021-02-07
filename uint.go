@@ -21,8 +21,16 @@ func UInt() (uint, error) {
 }
 
 func UIntRange(min, max uint) (uint, error) {
-	x, err := randomUInt64(uint64(min), uint64(max))
-	return uint(x), err
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := UInt()
+	if err != nil {
+		return 0, err
+	}
+	return min + (x % d), nil
 }
 
 func UIntChecked() uint {

@@ -13,8 +13,20 @@ func Int8() (int8, error) {
 }
 
 func Int8Range(min, max int8) (int8, error) {
-	x, err := randomInt64(int64(min), int64(max))
-	return int8(x), err
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := Int8()
+	if err != nil {
+		return 0, err
+	}
+
+	//XXX: x should always be positive
+	x &= int8(^(uint8(1) << 7))
+
+	return min + (x % d), nil
 }
 
 func Int8Checked() int8 {

@@ -2,6 +2,7 @@ package easyrand
 
 import (
 	"crypto/rand"
+	"math/bits"
 	"unsafe"
 )
 
@@ -21,8 +22,20 @@ func Int() (int, error) {
 }
 
 func IntRange(min, max int) (int, error) {
-	x, err := randomInt64(int64(min), int64(max))
-	return int(x), err
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := Int()
+	if err != nil {
+		return 0, err
+	}
+
+	//XXX: x should always be positive
+	x &= int(^(uint(1) << (bits.UintSize - 1)))
+
+	return min + (x % d), nil
 }
 
 func IntChecked() int {

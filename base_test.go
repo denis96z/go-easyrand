@@ -6,28 +6,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestRandomInt64(t *testing.T) {
-	for i := 0; i < 1000; i++ {
-		const min, max int64 = -1, 1
-		v, err := randomInt64(min, max)
-
-		assert.NoError(t, err)
-		assert.LessOrEqual(t, min, v)
-		assert.GreaterOrEqual(t, max, v)
-	}
-}
-
-func TestRandomUInt64(t *testing.T) {
-	for i := 0; i < 1000; i++ {
-		const min, max uint64 = 0, 1
-		v, err := randomUInt64(min, max)
-
-		assert.NoError(t, err)
-		assert.LessOrEqual(t, min, v)
-		assert.GreaterOrEqual(t, max, v)
-	}
-}
-
 func TestRandomBytesAlphabet(t *testing.T) {
 	m := map[byte]struct{}{
 		1: {}, 2: {}, 3: {},

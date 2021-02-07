@@ -14,7 +14,20 @@ func Int64() (int64, error) {
 }
 
 func Int64Range(min, max int64) (int64, error) {
-	return randomInt64(min, max)
+	d := max - min
+	if d == 0 {
+		return min, nil
+	}
+
+	x, err := Int64()
+	if err != nil {
+		return 0, err
+	}
+
+	//XXX: x should always be positive
+	x &= int64(^(uint64(1) << 63))
+
+	return min + (x % d), nil
 }
 
 func Int64Checked() int64 {
