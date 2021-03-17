@@ -8,8 +8,24 @@ func String(alphabet string, n int) (string, error) {
 	return string(b), nil
 }
 
+func StringChecked(alphabet string, n int) string {
+	s, err := String(alphabet, n)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func StringUnchecked(alphabet string, n int) string {
+	s, _ := String(alphabet, n)
+	return s
+}
+
 const (
 	num = "0123456789"
+
+	hexNumLower = num + "abcdef"
+	hexNumUpper = num + "ABCDEF"
 
 	alphaLower = "abcdefghijklmnopqrstuvwxyz"
 	alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -57,6 +73,82 @@ func NumVarLenStringChecked(nmin, nmax int) string {
 
 func NumVarLenStringUnchecked(nmin, nmax int) string {
 	s, _ := NumVarLenString(nmin, nmax)
+	return s
+}
+
+func HexNumLowerString(n int) (string, error) {
+	return String(hexNumLower, n)
+}
+
+func HexNumLowerStringChecked(n int) string {
+	s, err := HexNumLowerString(n)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func HexNumLowerStringUnchecked(n int) string {
+	s, _ := HexNumLowerString(n)
+	return s
+}
+
+func HexNumLowerVarLenString(nmin, nmax int) (string, error) {
+	n, err := IntRange(nmin, nmax)
+	if err != nil {
+		return "", err
+	}
+	return HexNumLowerString(n)
+}
+
+func HexNumLowerVarLenStringChecked(nmin, nmax int) string {
+	s, err := HexNumLowerVarLenString(nmin, nmax)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func HexNumLowerVarLenStringUnchecked(nmin, nmax int) string {
+	s, _ := HexNumLowerVarLenString(nmin, nmax)
+	return s
+}
+
+func HexNumUpperString(n int) (string, error) {
+	return String(hexNumUpper, n)
+}
+
+func HexNumUpperStringChecked(n int) string {
+	s, err := HexNumUpperString(n)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func HexNumUpperStringUnchecked(n int) string {
+	s, _ := HexNumUpperString(n)
+	return s
+}
+
+func HexNumUpperVarLenString(nmin, nmax int) (string, error) {
+	n, err := IntRange(nmin, nmax)
+	if err != nil {
+		return "", err
+	}
+	return HexNumUpperString(n)
+}
+
+func HexNumUpperVarLenStringChecked(nmin, nmax int) string {
+	s, err := HexNumUpperVarLenString(nmin, nmax)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func HexNumUpperVarLenStringUnchecked(nmin, nmax int) string {
+	s, _ := HexNumUpperVarLenString(nmin, nmax)
 	return s
 }
 
