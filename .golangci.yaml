@@ -1,0 +1,16 @@
+run:
+  deadline: 5m
+  issues-exit-code: 1
+  skip-dirs:
+    - "vendor"
+output:
+  format: colored-line-number
+linters:
+  enable-all: true
+  disable:
+    - wsl
+    - gomnd
+    - ifshort
+    - nlreturn
+    - wrapcheck
+    - testpackage

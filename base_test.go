@@ -3,10 +3,11 @@ package easyrand
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestRandomBytesAlphabet(t *testing.T) {
+	t.Parallel()
 	m := map[byte]struct{}{
 		1: {}, 2: {}, 3: {},
 	}
@@ -19,12 +20,12 @@ func TestRandomBytesAlphabet(t *testing.T) {
 	for i := 0; i < 1000; i++ {
 		v, err := randomBytesAlphabet(a, i)
 
-		assert.NoError(t, err)
-		assert.Equal(t, i, len(v))
+		require.NoError(t, err)
+		require.Equal(t, i, len(v))
 
 		for j := 0; j < i; j++ {
 			_, ok := m[v[j]]
-			assert.True(t, ok)
+			require.True(t, ok)
 		}
 	}
 }

@@ -19,7 +19,7 @@ func Int16Range(min, max int16) (int16, error) {
 		return 0, err
 	}
 
-	//XXX: x should always be positive
+	// XXX: x should always be positive
 	x &= int16(^(uint16(1) << 15))
 
 	return min + (x % d), nil

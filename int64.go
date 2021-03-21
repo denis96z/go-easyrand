@@ -20,7 +20,7 @@ func Int64Range(min, max int64) (int64, error) {
 		return 0, err
 	}
 
-	//XXX: x should always be positive
+	// XXX: x should always be positive
 	x &= int64(^(uint64(1) << 63))
 
 	return min + (x % d), nil

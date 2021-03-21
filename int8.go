@@ -19,7 +19,7 @@ func Int8Range(min, max int8) (int8, error) {
 		return 0, err
 	}
 
-	//XXX: x should always be positive
+	// XXX: x should always be positive
 	x &= int8(^(uint8(1) << 7))
 
 	return min + (x % d), nil

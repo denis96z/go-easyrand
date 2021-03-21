@@ -31,7 +31,7 @@ func IntRange(min, max int) (int, error) {
 		return 0, err
 	}
 
-	//XXX: x should always be positive
+	// XXX: x should always be positive
 	x &= int(^(uint(1) << (bits.UintSize - 1)))
 
 	return min + (x % d), nil

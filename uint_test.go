@@ -4,17 +4,19 @@ import (
 	"math/bits"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestUInt(t *testing.T) {
+	t.Parallel()
 	for i := 0; i < 1000; i++ {
 		_, err := UInt()
-		assert.NoError(t, err)
+		require.NoError(t, err)
 	}
 }
 
 func TestUIntRange(t *testing.T) {
+	t.Parallel()
 	tCases := []struct {
 		Min uint
 		Max uint
@@ -43,8 +45,8 @@ func TestUIntRange(t *testing.T) {
 
 	for _, tCase := range tCases {
 		x, err := UIntRange(tCase.Min, tCase.Max)
-		assert.NoError(t, err)
-		assert.LessOrEqual(t, tCase.Min, x)
-		assert.GreaterOrEqual(t, tCase.Max, x)
+		require.NoError(t, err)
+		require.LessOrEqual(t, tCase.Min, x)
+		require.GreaterOrEqual(t, tCase.Max, x)
 	}
 }

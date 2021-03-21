@@ -4,17 +4,20 @@ import (
 	"math/bits"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestInt(t *testing.T) {
+	t.Parallel()
 	for i := 0; i < 1000; i++ {
 		_, err := Int()
-		assert.NoError(t, err)
+		require.NoError(t, err)
 	}
 }
 
 func TestIntRange(t *testing.T) {
+	t.Parallel()
+
 	intMin := func(x int, n uintptr) int {
 		return x << n
 	}(
@@ -59,8 +62,8 @@ func TestIntRange(t *testing.T) {
 
 	for _, tCase := range tCases {
 		x, err := IntRange(tCase.Min, tCase.Max)
-		assert.NoError(t, err)
-		assert.LessOrEqual(t, tCase.Min, x)
-		assert.GreaterOrEqual(t, tCase.Max, x)
+		require.NoError(t, err)
+		require.LessOrEqual(t, tCase.Min, x)
+		require.GreaterOrEqual(t, tCase.Max, x)
 	}
 }
