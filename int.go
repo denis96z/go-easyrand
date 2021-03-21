@@ -1,7 +1,6 @@
 package easyrand
 
 import (
-	"crypto/rand"
 	"math/bits"
 	"unsafe"
 )
@@ -9,8 +8,8 @@ import (
 func Int() (int, error) {
 	var x int
 
-	b := make([]byte, unsafe.Sizeof(x))
-	if _, err := rand.Read(b); err != nil {
+	b, err := randomBytes(int(unsafe.Sizeof(x)))
+	if err != nil {
 		return 0, err
 	}
 

@@ -1,12 +1,8 @@
 package easyrand
 
-import (
-	"crypto/rand"
-)
-
 func Int64() (int64, error) {
-	b := make([]byte, 8)
-	if _, err := rand.Read(b); err != nil {
+	b, err := randomBytes(8)
+	if err != nil {
 		return 0, err
 	}
 	return int64(b[0]) | int64(b[1])<<8 | int64(b[2])<<16 | int64(b[3])<<24 |

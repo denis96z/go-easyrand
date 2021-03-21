@@ -1,12 +1,8 @@
 package easyrand
 
-import (
-	"crypto/rand"
-)
-
 func Bool() (bool, error) {
-	b := make([]byte, 1)
-	if _, err := rand.Read(b); err != nil {
+	b, err := randomBytes(1)
+	if err != nil {
 		return false, err
 	}
 	return b[0]%2 == 0, nil

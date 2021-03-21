@@ -1,15 +1,14 @@
 package easyrand
 
 import (
-	"crypto/rand"
 	"unsafe"
 )
 
 func UInt() (uint, error) {
 	var x uint
 
-	b := make([]byte, unsafe.Sizeof(x))
-	if _, err := rand.Read(b); err != nil {
+	b, err := randomBytes(int(unsafe.Sizeof(x)))
+	if err != nil {
 		return 0, err
 	}
 

@@ -1,12 +1,8 @@
 package easyrand
 
-import (
-	"crypto/rand"
-)
-
 func Int32() (int32, error) {
-	b := make([]byte, 4)
-	if _, err := rand.Read(b); err != nil {
+	b, err := randomBytes(4)
+	if err != nil {
 		return 0, err
 	}
 	return int32(b[0]) | int32(b[1])<<8 | int32(b[2])<<16 | int32(b[3])<<24, nil
